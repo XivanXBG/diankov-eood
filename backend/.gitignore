@@ -1,7 +1,0 @@
-node_modules/
-uploads/
-data/inquiries.json
-.env
-.DS_Store
-.vscode/
-*.log
