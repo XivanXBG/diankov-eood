@@ -1,0 +1,94 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 100px auto 50px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .formRow {
+    display: flex;
+    gap: 20px;
+  }
+
+  .column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    gap: 10px;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  input,
+  select,
+  textarea {
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  textarea {
+    height: 100px;
+    resize: none;
+  }
+
+  .gdpr {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    background: #004080;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background-color: rgb(107, 149, 107);
+      color: #000;
+      cursor: pointer;
+    }
+  }
+}
+hr {
+  width: 80%;
+}
+h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-style: bold;
+}
+.contacts {
+  display: flex;
+height: 400px;
+  gap: 200px;
+  margin: 40px 200px;
+  .map {
+    width: 50%;
+  }
+  .contactInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

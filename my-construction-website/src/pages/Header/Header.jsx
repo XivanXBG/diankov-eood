@@ -16,8 +16,8 @@ function Header() {
           Начало
         </Link>
         <Link
-          to="/about"
-          className={location.pathname === "/about" ? styles.activeLink : ""}
+          to="/about-us"
+          className={location.pathname === "/about-us" ? styles.activeLink : ""}
         >
           За Нас
         </Link>

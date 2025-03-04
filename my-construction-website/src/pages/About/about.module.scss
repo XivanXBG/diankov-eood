@@ -1,0 +1,51 @@
+.container {
+  max-width: 900px;
+  min-height: calc(100vh - 275px);
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  text-align: center;
+  font-size: 2rem;
+  color: #004080;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: #004080;
+  border-bottom: 2px solid #004080;
+  padding-bottom: 5px;
+}
+
+.text {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.list {
+  padding-left: 20px;
+
+  li {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+}
+
+.signature {
+  margin-top: 30px;
+  font-style: italic;
+  text-align: right;
+  color: #555;
+}

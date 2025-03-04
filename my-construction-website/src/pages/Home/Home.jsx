@@ -1,8 +1,12 @@
 import RecentProjects from "../RecentProjects/RejcentProjects";
 import constructionImage from "/main.jpg";
+import {useNavigate} from "react-router-dom"
 import styles from "../Home/home.module.scss";
 
+
 function Home() {
+
+  const navigate = useNavigate();
   return (
     <>
       <section className={styles.hero}>
@@ -13,10 +17,10 @@ function Home() {
         />
         <div className={styles.overlay}>
           <h4>Дянков ЕООД</h4>
-          <h1>Строителни Услуги</h1>
-          <p>Качествени решения за вашия дом или бизнес.</p>
+          <h1>Проектиране, строителство и геодезия</h1>
+          <p>От идея до реалност – с грижа и прецизност</p>
           <div className={styles.buttons}>
-            <button className={styles.button}>Направи запитване</button>
+            <button onClick={()=>{navigate("/contacts")}} className={styles.button}>Направи запитване</button>
           </div>
         </div>
       </section>
