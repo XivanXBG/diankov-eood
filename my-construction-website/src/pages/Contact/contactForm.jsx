@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "../Contact/contact.module.scss";
 
 function ContactForm() {
@@ -8,9 +8,11 @@ function ContactForm() {
     email: "",
     service: "",
     message: "",
-    file: null,
+    files: [],
     consent: false,
   });
+
+  const fileInputRef = useRef(null); // Добавяме референция към input-a
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
@@ -25,10 +27,49 @@ function ContactForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
-    alert("Вашето запитване е изпратено успешно!");
+
+    const data = new FormData();
+    data.append("name", formData.name);
+    data.append("phone", formData.phone);
+    data.append("email", formData.email);
+    data.append("service", formData.service);
+    data.append("message", formData.message);
+    data.append("consent", formData.consent);
+
+    formData.files.forEach((file) => {
+      data.append("files", file);
+    });
+
+    try {
+      const response = await fetch("http://localhost:5000/submit-form", {
+        method: "POST",
+        body: data,
+      });
+
+      const result = await response.json();
+      alert(result.message);
+
+      // Нулиране на formData
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        service: "",
+        message: "",
+        files: [],
+        consent: false,
+      });
+
+      // Ръчно изчистване на file input-а
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    } catch (error) {
+      console.error("Error sending form:", error);
+      alert("Възникна грешка при изпращането.");
+    }
   };
 
   return (
@@ -64,6 +105,16 @@ function ContactForm() {
             onChange={handleChange}
             required
           />
+
+          <label>Прикачете снимки (по желание)</label>
+          <input
+            type="file"
+            name="files"
+            multiple
+            onChange={handleChange}
+            accept="image/*"
+            ref={fileInputRef} // Това е ключът!
+          />
         </div>
 
         {/* Дясна колона */}
@@ -94,7 +145,6 @@ function ContactForm() {
         </div>
       </div>
 
-      {/* GDPR + бутон */}
       <div className={styles.gdpr}>
         <input
           type="checkbox"
