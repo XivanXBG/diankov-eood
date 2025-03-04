@@ -1,0 +1,57 @@
+.hero {
+  height: 650px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  .image {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    filter: brightness(0.4);
+  }
+
+  .overlay {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h4 {
+      margin: 0px;
+    }
+    h1 {
+      margin: 0px;
+    }
+  }
+
+  .buttons {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+
+    .button {
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: #004080;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .button:hover {
+      background-color: rgb(107, 149, 107);
+      color: #000;
+      cursor: pointer;
+    }
+  }
+}
+
+.sectionTitle {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.8rem;
+}
