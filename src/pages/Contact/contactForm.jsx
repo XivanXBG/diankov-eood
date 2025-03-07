@@ -12,7 +12,9 @@ function ContactForm() {
     consent: false,
   });
 
-  const fileInputRef = useRef(null); // Добавяме референция към input-a
+  const [isSubmitting, setIsSubmitting] = useState(false); // Тук следим дали формата вече се изпраща
+
+  const fileInputRef = useRef(null); // Добавяме референция към input-а за файлове
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
@@ -30,6 +32,10 @@ function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (isSubmitting) return; // Предпазване от двойно кликване
+
+    setIsSubmitting(true); // Заключваме формата веднага щом започне изпращането
+
     const data = new FormData();
     data.append("name", formData.name);
     data.append("phone", formData.phone);
@@ -43,10 +49,13 @@ function ContactForm() {
     });
 
     try {
-      const response = await fetch("http://localhost:5000/submit-form", {
-        method: "POST",
-        body: data,
-      });
+      const response = await fetch(
+        "https://backend-dyankoveood.onrender.com/submit-form",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
 
       const result = await response.json();
       alert(result.message);
@@ -62,13 +71,14 @@ function ContactForm() {
         consent: false,
       });
 
-      // Ръчно изчистване на file input-а
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
     } catch (error) {
       console.error("Error sending form:", error);
       alert("Възникна грешка при изпращането.");
+    } finally {
+      setIsSubmitting(false); // Отключваме бутона, независимо дали е успешно или не
     }
   };
 
@@ -77,7 +87,6 @@ function ContactForm() {
       <h2>Направете запитване</h2>
 
       <div className={styles.formRow}>
-        {/* Лява колона */}
         <div className={styles.column}>
           <label>Име и фамилия*</label>
           <input
@@ -113,11 +122,10 @@ function ContactForm() {
             multiple
             onChange={handleChange}
             accept="image/*"
-            ref={fileInputRef} // Това е ключът!
+            ref={fileInputRef}
           />
         </div>
 
-        {/* Дясна колона */}
         <div className={styles.column}>
           <label>Тип на услугата*</label>
           <select
@@ -156,7 +164,9 @@ function ContactForm() {
         <label>Съгласен съм с обработката на личните ми данни*</label>
       </div>
 
-      <button type="submit">Изпрати запитване</button>
+      <button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? "Изпращане..." : "Изпрати запитване"}
+      </button>
     </form>
   );
 }

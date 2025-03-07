@@ -1,0 +1,38 @@
+.adminPanel {
+  padding: 20px;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+.inquiriesList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inquiryCard {
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.filesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.thumbnail {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
