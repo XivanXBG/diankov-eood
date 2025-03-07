@@ -3,13 +3,8 @@
 <head>
   <title>Redirecting...</title>
   <script type="text/javascript">
-    var searchParams = new URLSearchParams(window.location.search);
-    var redirect = searchParams.get('redirect');
-    if (redirect) {
-      location.replace('/diankov-eood/' + redirect.replace(/~and~/g, '&'));
-    } else {
-      location.replace('/diankov-eood/');
-    }
+    var redirect = location.pathname.replace('/diankov-eood/', '');
+    location.replace('/diankov-eood/?redirect=' + redirect);
   </script>
 </head>
 <body>
