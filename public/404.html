@@ -1,7 +1,27 @@
-<script>
-  var redirect = sessionStorage.redirect;
-  delete sessionStorage.redirect;
-  if (redirect && redirect != location.href) {
-    history.replaceState(null, null, redirect);
-  }
-</script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+      var pathSegmentsToKeep = 1;
+      var l = window.location;
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname
+            .split("/")
+            .slice(0, 1 + pathSegmentsToKeep)
+            .join("/") +
+          "/?redirect=" +
+          l.pathname.slice(1).replace(/&/g, "~and~") +
+          (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+          l.hash
+      );
+    </script>
+  </head>
+  <body>
+    Redirecting...
+  </body>
+</html>
