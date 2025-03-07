@@ -1,27 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Redirecting...</title>
-    <script type="text/javascript">
-      var pathSegmentsToKeep = 1;
-      var l = window.location;
-      l.replace(
-        l.protocol +
-          "//" +
-          l.hostname +
-          (l.port ? ":" + l.port : "") +
-          l.pathname
-            .split("/")
-            .slice(0, 1 + pathSegmentsToKeep)
-            .join("/") +
-          "/?redirect=" +
-          l.pathname.slice(1).replace(/&/g, "~and~") +
-          (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
-          l.hash
-      );
-    </script>
-  </head>
-  <body>
-    Redirecting...
-  </body>
+<head>
+  <title>Redirecting...</title>
+  <script type="text/javascript">
+    var searchParams = new URLSearchParams(window.location.search);
+    var redirect = searchParams.get('redirect');
+    if (redirect) {
+      location.replace('/diankov-eood/' + redirect.replace(/~and~/g, '&'));
+    } else {
+      location.replace('/diankov-eood/');
+    }
+  </script>
+</head>
+<body>
+  Redirecting...
+</body>
 </html>
